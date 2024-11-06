@@ -39,4 +39,17 @@ class PokemonTrainerDao extends BaseDao {
     final Database db = await getDb();
     await db.delete(PokemonTrainerEntityContract.pokemonTrainerTable);
   }
+
+  Future<bool> deleteByID(PokemonTrainerEntity pokemonDel) async {
+    final Database db = await getDb();
+    try {
+      await db.delete(PokemonTrainerEntityContract.pokemonTrainerTable,
+          where: '${PokemonTrainerEntityContract.idColumn} = ?',
+          whereArgs: [pokemonDel.id]);
+    } catch (e) {
+      print(e);
+      return false;
+    }
+    return true;
+  }
 }

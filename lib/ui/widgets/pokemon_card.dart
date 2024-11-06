@@ -28,7 +28,7 @@ class _PokemonCardState extends State<PokemonCard> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (widget.pokemon.imgSpriteUrl != null)
@@ -67,13 +67,6 @@ class _PokemonCardState extends State<PokemonCard> {
                         style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
-
-                      // if (widget.pokemon.type.length > 1)
-                      //   Text(
-                      //     widget.pokemon.type[1],
-                      //     style: Theme.of(context).textTheme.subtitleMedium,
-                      //     overflow: TextOverflow.ellipsis,
-                      //   ),
                     ],
                   ),
                 ),

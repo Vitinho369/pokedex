@@ -18,7 +18,7 @@ class CapturePokemonProvider extends ChangeNotifier {
       type: pokemonCapture.type,
       base: pokemonCapture.base,
       dataGenerated:
-          "${DateTime.now().day.toString()} + '/' + ${DateTime.now().month.toString()} + '/' + ${DateTime.now().year.toString()}",
+          "${DateTime.now().day.toString()}/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}",
     );
 
     for (var pokemon in pokemonsCaptured) {

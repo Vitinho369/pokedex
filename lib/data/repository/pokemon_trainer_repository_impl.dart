@@ -29,6 +29,12 @@ class PokemonTrainerRepositoryImpl implements PokemonTrainerRepository {
   @override
   Future<void> capturePokemon(PokemonMeet pokemonCapture) async {
     final pokemonMeet = databaseMapper.toPokemonTrainerEntityDB(pokemonCapture);
-    final dbPokemonEntity = await pokemonTrainerDao.insert(pokemonMeet);
+    await pokemonTrainerDao.insert(pokemonMeet);
+  }
+
+  @override
+  Future<bool> releasePokemon(PokemonMeet pokemonRelease) async {
+    final pokemonMeet = databaseMapper.toPokemonTrainerEntityDB(pokemonRelease);
+    return await pokemonTrainerDao.deleteByID(pokemonMeet);
   }
 }

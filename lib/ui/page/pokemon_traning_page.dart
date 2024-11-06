@@ -9,20 +9,17 @@ class PokemonsTrainingPage extends StatefulWidget {
   const PokemonsTrainingPage({super.key});
 
   @override
-  State<PokemonsTrainingPage> createState() => _MoviesListPageState();
+  State<PokemonsTrainingPage> createState() => _PokemonsTrainingPageState();
 }
 
-class _MoviesListPageState extends State<PokemonsTrainingPage> {
+class _PokemonsTrainingPageState extends State<PokemonsTrainingPage> {
   late final PokemonTrainerRepositoryImpl pokemonsRepoTrainer;
-  late final PagingController<int, PokemonMeet> _pagingController =
-      PagingController(firstPageKey: 1);
 
   Future<List<PokemonMeet>> getPokemonSorted() async {
     late final List<PokemonMeet> pokemons;
     try {
       pokemons = await pokemonsRepoTrainer.getPokemons();
     } catch (e) {
-      _pagingController.error = e;
       print(e);
     }
     return pokemons;
@@ -36,80 +33,45 @@ class _MoviesListPageState extends State<PokemonsTrainingPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _pagingController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Pokemons"),
-          // backgroundColor: Theme.of(context).primaryColorLight,
-          backgroundColor: Colors.red,
-        ),
-        body: FutureBuilder<List<PokemonMeet>>(
-            future: getPokemonSorted(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                print(snapshot.error);
-                return Center(child: Text("Erro"));
-              } else {
-                if (snapshot.data!.length > 0)
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return PokemonTrainerCard(
-                        pokemonMeet: snapshot.data!.elementAt(index),
-                      );
-                    },
-                  );
-
-                return Text("Sem pokemons");
-              }
-            })
-
-        /*
-      body: FutureBuilder(
-          future: moviesRepo.getMovies(page: 1, limit: 10),
-          builder: (context, snapshop) {
-            if (snapshop.hasData) {
-              return ListView(
-                children: List.generate(
-                  snapshop.data!.length,
-                  (index) => MovieCard(movie: snapshop.data![index]),
-                ),
-              );
-            } else {
-              return LinearProgressIndicator();
-            }
-          }),*/
-        );
-
-    /*
-    return Scaffold(
       appBar: AppBar(
-        title: Text("Movies"),
+        title: const Text(
+          "Pokemons",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+        // backgroundColor: Theme.of(context).primaryColorLight,
+        backgroundColor: Colors.red,
       ),
-      body: FutureBuilder(
-          future: moviesRepo.getMovies(),
-          builder: (context, snapshop) {
-            if (snapshop.hasData) {
-              return ListView(
-                children: List.generate(
-                    snapshop.data!.length,
-                    (index) => ListTile(
-                          title: Text(snapshop.data![index].title),
-                        )),
+      body: FutureBuilder<List<PokemonMeet>>(
+        future: getPokemonSorted(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text("Erro"));
+          } else {
+            if (snapshot.data!.isNotEmpty)
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return PokemonTrainerCard(
+                    pokemonMeet: snapshot.data!.elementAt(index),
+                  );
+                },
               );
-            } else {
-              return LinearProgressIndicator();
-            }
-          }),
+//alinhando o texto ao centro
+            return Container(
+              alignment: Alignment.center,
+              child: const Positioned(
+                  child: Text(
+                "Nenhum pokémon capturado",
+                style: TextStyle(fontSize: 20),
+              )),
+            );
+          }
+        },
+      ),
     );
-     */
   }
 }

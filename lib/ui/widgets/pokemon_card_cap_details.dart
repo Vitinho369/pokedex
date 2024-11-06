@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/data/repository/pokemon_trainer_repository_impl.dart';
 import 'package:pokedex/domain/pokemon_meet.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCardCaptureDetails extends StatelessWidget {
   final PokemonMeet pokemon;
-  const PokemonCardCaptureDetails({super.key, required this.pokemon});
+  late PokemonTrainerRepositoryImpl pokemonsRepoTrainer;
+  PokemonCardCaptureDetails(
+      {super.key, required this.pokemon, required this.pokemonsRepoTrainer});
 
   String dateFormater(String date) {
     final dateSplit = date.toString().split("/");
@@ -83,7 +86,12 @@ class PokemonCardCaptureDetails extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               // Navigator.pushNamed(context, route);
-              print("liberado");
+              pokemonsRepoTrainer.releasePokemon(pokemon).then((value) {
+                if (value)
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                else
+                  print("Erro ao soltar pokemon");
+              });
             },
             style: ElevatedButton.styleFrom(
                 elevation: 5,

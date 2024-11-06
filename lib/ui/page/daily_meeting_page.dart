@@ -96,18 +96,6 @@ class _DailyMeetingPageState extends State<DailyMeetingPage> {
                     MenssageCapture(text: "Pokemon capturado com sucesso"),
                   if (captured == 3)
                     MenssageCapture(text: "Você já tem 6 pokemons"),
-                  // Container(
-                  //   color: Colors.black.withOpacity(0.5),
-                  //   child: Center(
-                  //     child: Text(
-                  //       "Pokémon capturado",
-                  //       style: TextStyle(
-                  //         fontSize: 20,
-                  //         color: Colors.white,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -9,10 +9,10 @@ class PokemonsListPage extends StatefulWidget {
   const PokemonsListPage({super.key});
 
   @override
-  State<PokemonsListPage> createState() => _MoviesListPageState();
+  State<PokemonsListPage> createState() => _PokemonsListPageState();
 }
 
-class _MoviesListPageState extends State<PokemonsListPage> {
+class _PokemonsListPageState extends State<PokemonsListPage> {
   late final PokemonRepositoryImpl pokemonsRepo;
   late final PagingController<int, Pokemon> _pagingController =
       PagingController(firstPageKey: 1);
@@ -44,57 +44,21 @@ class _MoviesListPageState extends State<PokemonsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Pokemons"),
-          // backgroundColor: Theme.of(context).primaryColorLight,
-          backgroundColor: Colors.red,
-        ),
-        body: PagedListView<int, Pokemon>(
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Pokemon>(
-            itemBuilder: (context, pokemon, index) =>
-                PokemonCard(pokemon: pokemon),
-          ),
-        )
-
-        /*
-      body: FutureBuilder(
-          future: moviesRepo.getMovies(page: 1, limit: 10),
-          builder: (context, snapshop) {
-            if (snapshop.hasData) {
-              return ListView(
-                children: List.generate(
-                  snapshop.data!.length,
-                  (index) => MovieCard(movie: snapshop.data![index]),
-                ),
-              );
-            } else {
-              return LinearProgressIndicator();
-            }
-          }),*/
-        );
-
-    /*
-    return Scaffold(
       appBar: AppBar(
-        title: Text("Movies"),
+        title: Text(
+          "Pokemons",
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        // backgroundColor: Theme.of(context).primaryColorLight,
+        backgroundColor: Colors.red,
       ),
-      body: FutureBuilder(
-          future: moviesRepo.getMovies(),
-          builder: (context, snapshop) {
-            if (snapshop.hasData) {
-              return ListView(
-                children: List.generate(
-                    snapshop.data!.length,
-                    (index) => ListTile(
-                          title: Text(snapshop.data![index].title),
-                        )),
-              );
-            } else {
-              return LinearProgressIndicator();
-            }
-          }),
+      body: PagedListView<int, Pokemon>(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Pokemon>(
+          itemBuilder: (context, pokemon, index) =>
+              PokemonCard(pokemon: pokemon),
+        ),
+      ),
     );
-     */
   }
 }

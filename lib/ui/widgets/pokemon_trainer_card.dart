@@ -33,7 +33,7 @@ class _PokemonCardState extends State<PokemonTrainerCard> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               if (widget.pokemonMeet.imgSpriteUrl != null)
                 Container(
@@ -76,15 +76,20 @@ class _PokemonCardState extends State<PokemonTrainerCard> {
                   ),
                 ),
               ),
-              const SizedBox(width: 50),
-              TypeContainer(
-                type: widget.pokemonMeet.type![0],
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TypeContainer(
+                    type: widget.pokemonMeet.type![0],
+                  ),
+                  SizedBox(height: 4),
+                  if (widget.pokemonMeet.type!.length > 1)
+                    TypeContainer(
+                      type: widget.pokemonMeet.type![1],
+                    ),
+                ],
               ),
-              const SizedBox(width: 4),
-              if (widget.pokemonMeet.type!.length > 1)
-                TypeContainer(
-                  type: widget.pokemonMeet.type![1],
-                ),
             ],
           ),
         ),

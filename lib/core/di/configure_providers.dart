@@ -17,7 +17,7 @@ class ConfigureProviders {
   ConfigureProviders({required this.providers});
 
   static Future<ConfigureProviders> createDependencyTree() async {
-    final api_client = ApiClient(baseUrl: "http://192.168.50.117:3000");
+    final api_client = ApiClient(baseUrl: "http://192.168.168.117:3000");
     final network_mapper = NetworkMapper();
     final database_mapper = DatabaseMapper();
     final pokemon_dao = PokemonDao();
