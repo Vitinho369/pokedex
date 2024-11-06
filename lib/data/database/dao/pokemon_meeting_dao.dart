@@ -1,5 +1,4 @@
 import 'package:pokedex/data/database/dao/base_dao.dart';
-import 'package:pokedex/data/database/entity/pokemon_database_entity.dart';
 import 'package:pokedex/data/database/entity/pokemon_meet_db_entity.dart';
 import 'package:sqflite/sqflite.dart';
 
