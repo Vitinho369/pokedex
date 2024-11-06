@@ -23,7 +23,8 @@ class InitialPage extends StatelessWidget {
             ButtonNavigation(textButton: "Pokédex", route: "/listPage"),
             ButtonNavigation(
                 route: "/dailyMeeting", textButton: "Encontro Diário"),
-            ButtonNavigation(route: "/myPokemons", textButton: "Meus Pokémons"),
+            ButtonNavigation(
+                route: "/pokemonTraing", textButton: "Meus Pokémons"),
           ],
         ),
       ),

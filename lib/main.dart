@@ -3,6 +3,7 @@ import 'package:pokedex/core/di/configure_providers.dart';
 import 'package:pokedex/ui/page/daily_meeting_page.dart';
 import 'package:pokedex/ui/page/initial_page.dart';
 import 'package:pokedex/ui/page/pokemon_details_page.dart';
+import 'package:pokedex/ui/page/pokemon_traning_page.dart';
 import 'package:pokedex/ui/page/pokemons_list_page.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,8 @@ class AppRoot extends StatelessWidget {
           '/listPage': (context) => const PokemonsListPage(),
           '/listPage/pokemonDetails': (context) => PokemonDetailsPage(),
           '/dailyMeeting': (context) => const DailyMeetingPage(),
-          '/myPokemons': (context) => const PokemonsListPage(),
+          '/pokemonTraing': (context) => const PokemonsTrainingPage(),
+          '/pokemonTraing/pokemonDetails': (context) => PokemonDetailsPage(),
         },
       ),
     );

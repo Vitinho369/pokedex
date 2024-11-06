@@ -37,6 +37,7 @@ class PokemonCardDetails extends StatelessWidget {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   "${pokemon.name}",
@@ -46,12 +47,12 @@ class PokemonCardDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: TypeContainer(type: pokemon.type![0]),
                     ),
-                    if (!pokemon.type![1].isEmpty)
+                    if (pokemon.type!.length > 1 && pokemon.type![1].isNotEmpty)
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: TypeContainer(type: pokemon.type![1]),
                       ),
                   ],

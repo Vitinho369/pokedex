@@ -1,18 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/pokemon_meet.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
-class PokemonCard extends StatefulWidget {
-  final Pokemon pokemon;
+class PokemonTrainerCard extends StatefulWidget {
+  final PokemonMeet pokemonMeet;
 
-  const PokemonCard({super.key, required this.pokemon});
+  const PokemonTrainerCard({super.key, required this.pokemonMeet});
 
   @override
-  State<PokemonCard> createState() => _PokemonCardState();
+  State<PokemonTrainerCard> createState() => _PokemonCardState();
 }
 
-class _PokemonCardState extends State<PokemonCard> {
+class _PokemonCardState extends State<PokemonTrainerCard> {
+  String dateFormater(String date) {
+    final dateSplit = date.toString().split("/");
+    return "${dateSplit[0].padLeft(2, "0")}/${dateSplit[1].padLeft(2, "0")}/${dateSplit[2]}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +25,7 @@ class _PokemonCardState extends State<PokemonCard> {
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, '/listPage/pokemonDetails',
-              arguments: widget.pokemon);
+              arguments: widget.pokemonMeet);
         },
         child: Container(
           decoration: BoxDecoration(
@@ -28,10 +33,9 @@ class _PokemonCardState extends State<PokemonCard> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (widget.pokemon.imgSpriteUrl != null)
+              if (widget.pokemonMeet.imgSpriteUrl != null)
                 Container(
                   alignment: Alignment.center,
                   child: SizedBox(
@@ -40,7 +44,7 @@ class _PokemonCardState extends State<PokemonCard> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: CachedNetworkImage(
-                        imageUrl: widget.pokemon.imgSpriteUrl!,
+                        imageUrl: widget.pokemonMeet.imgSpriteUrl!,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -63,36 +67,24 @@ class _PokemonCardState extends State<PokemonCard> {
                   child: Column(
                     children: [
                       Text(
-                        "${widget.pokemon.name}",
+                        "${widget.pokemonMeet.name}",
                         style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
-
-                      // if (widget.pokemon.type.length > 1)
-                      //   Text(
-                      //     widget.pokemon.type[1],
-                      //     style: Theme.of(context).textTheme.subtitleMedium,
-                      //     overflow: TextOverflow.ellipsis,
-                      //   ),
+                      Text(dateFormater(widget.pokemonMeet.dataGenerated!)),
                     ],
                   ),
                 ),
               ),
               const SizedBox(width: 50),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TypeContainer(
-                    type: widget.pokemon.type![0],
-                  ),
-                  SizedBox(height: 4),
-                  if (widget.pokemon.type!.length > 1)
-                    TypeContainer(
-                      type: widget.pokemon.type![1],
-                    ),
-                ],
+              TypeContainer(
+                type: widget.pokemonMeet.type![0],
               ),
+              const SizedBox(width: 4),
+              if (widget.pokemonMeet.type!.length > 1)
+                TypeContainer(
+                  type: widget.pokemonMeet.type![1],
+                ),
             ],
           ),
         ),
