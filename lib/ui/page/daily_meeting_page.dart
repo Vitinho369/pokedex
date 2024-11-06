@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/data/repository/pokemon_repository_meet_impl.dart';
 import 'package:pokedex/data/repository/pokemon_trainer_repository_impl.dart';
 import 'package:pokedex/domain/pokemon_meet.dart';
+import 'package:pokedex/ui/widgets/menssage_capture.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 
@@ -30,8 +31,10 @@ class _DailyMeetingPageState extends State<DailyMeetingPage> {
 
   Future<int> capturePokemon(PokemonMeet pokemonCapture) async {
     final pokemonsCaptured = await pokemonsRepoCap.getPokemons();
-    print(pokemonCapture.id);
-
+    print("Length: ${pokemonsCaptured.length}");
+    if (pokemonsCaptured.length == 6) {
+      return 3;
+    }
     PokemonMeet pokemonCap = PokemonMeet(
       id: pokemonCapture.id,
       name: pokemonCapture.name,
@@ -85,43 +88,26 @@ class _DailyMeetingPageState extends State<DailyMeetingPage> {
             return Container(
               alignment: Alignment.center,
               child: Stack(
+                alignment: Alignment.topCenter,
                 children: [
                   if (captured == 1)
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        color: Colors.black.withOpacity(0.5),
-                        child: Center(
-                          child: Text(
-                            "Pokémon já capturado",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    MenssageCapture(text: "Pokemon já capturado"),
                   if (captured == 2)
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        color: Colors.black.withOpacity(0.5),
-                        child: Center(
-                          child: Text(
-                            "Pokémon capturado",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    MenssageCapture(text: "Pokemon capturado com sucesso"),
+                  if (captured == 3)
+                    MenssageCapture(text: "Você já tem 6 pokemons"),
+                  // Container(
+                  //   color: Colors.black.withOpacity(0.5),
+                  //   child: Center(
+                  //     child: Text(
+                  //       "Pokémon capturado",
+                  //       style: TextStyle(
+                  //         fontSize: 20,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

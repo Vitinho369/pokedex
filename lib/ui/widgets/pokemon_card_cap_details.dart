@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/domain/pokemon_meet.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
-class PokemonCardDetails extends StatelessWidget {
-  final Pokemon pokemon;
-  const PokemonCardDetails({super.key, required this.pokemon});
+class PokemonCardCaptureDetails extends StatelessWidget {
+  final PokemonMeet pokemon;
+  const PokemonCardCaptureDetails({super.key, required this.pokemon});
+
+  String dateFormater(String date) {
+    final dateSplit = date.toString().split("/");
+    return "${dateSplit[0].padLeft(2, "0")}/${dateSplit[1].padLeft(2, "0")}/${dateSplit[2]}";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,8 @@ class PokemonCardDetails extends StatelessWidget {
                   "${pokemon.name}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
+                Text(dateFormater(pokemon.dataGenerated!),
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -71,6 +78,23 @@ class PokemonCardDetails extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Navigator.pushNamed(context, route);
+              print("liberado");
+            },
+            style: ElevatedButton.styleFrom(
+                elevation: 5,
+                shadowColor: Colors.black,
+                backgroundColor: Colors.red,
+                minimumSize: Size(100, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                )),
+            child: Text("Soltar",
+                style: TextStyle(fontSize: 20, color: Colors.white)),
           ),
         ],
       ),

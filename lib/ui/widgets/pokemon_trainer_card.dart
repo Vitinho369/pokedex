@@ -24,7 +24,7 @@ class _PokemonCardState extends State<PokemonTrainerCard> {
       elevation: 5,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/listPage/pokemonDetails',
+          Navigator.pushNamed(context, '/pokemonTraing/pokemonDetails',
               arguments: widget.pokemonMeet);
         },
         child: Container(
