@@ -54,7 +54,7 @@ class PokemonTrainerEntity {
 }
 
 abstract class PokemonTrainerEntityContract {
-  static const String pokemonMeetTable = "pokemon_trainer_table";
+  static const String pokemonTrainerTable = "pokemon_trainer_table";
   static const String baseTable = "base_table";
   static const String idColumn = "id";
   static const String nameColumn = "name";

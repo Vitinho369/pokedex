@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:pokedex/data/database/entity/pokemon_database_entity.dart';
 import 'package:pokedex/data/database/entity/pokemon_meet_db_entity.dart';
+import 'package:pokedex/data/database/entity/pokemon_trainer_entity.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
 
@@ -76,6 +77,25 @@ abstract class BaseDao {
       ${PokemonMeetDBContract.imgThumbnailColumn} TEXT NULL,
       ${PokemonMeetDBContract.imgSpriteUrlColumn} TEXT NULL,
       ${PokemonMeetDBContract.dataGeneratedColumn} TEXT NOT NULL
+      );
+      ''',
+    );
+    batch.execute(
+      '''
+      CREATE TABLE IF NOT EXISTS ${PokemonTrainerEntityContract.pokemonTrainerTable}(
+      ${PokemonTrainerEntityContract.idColumn} INTEGER PRIMARY KEY AUTOINCREMENT,
+      ${PokemonTrainerEntityContract.nameColumn} TEXT NOT NULL,
+      ${PokemonTrainerEntityContract.typeFirstColumn} TEXT NOT NULL,
+      ${PokemonTrainerEntityContract.typeSecondColumn} TEXT,
+      ${PokemonTrainerEntityContract.hpColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.attackColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.defenseColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.spAttackColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.spDefenseColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.speedColumn} INTEGER NOT NULL,
+      ${PokemonTrainerEntityContract.imgThumbnailColumn} TEXT NULL,
+      ${PokemonTrainerEntityContract.imgSpriteUrlColumn} TEXT NULL,
+      ${PokemonTrainerEntityContract.dataGeneratedColumn} TEXT NOT NULL
       );
       ''',
     );

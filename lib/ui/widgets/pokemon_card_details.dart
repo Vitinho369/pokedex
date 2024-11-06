@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCardDetails extends StatelessWidget {
   final Pokemon pokemon;
@@ -20,17 +21,56 @@ class PokemonCardDetails extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Text("Nome: ${pokemon.name}"),
-          Text("Type:"),
-          Text(pokemon.type![0]),
-          if (!pokemon.type![1].isEmpty) Text(pokemon.type![1]),
-          Text("Base:"),
-          Text("HP: ${pokemon.base!.hp}"),
-          Text("Attack: ${pokemon.base!.attack}"),
-          Text("Defense: ${pokemon.base!.defense}"),
-          Text("SpAttack: ${pokemon.base!.spAttack}"),
-          Text("SpDefense: ${pokemon.base!.spDefense}"),
-          Text("Speed: ${pokemon.base!.speed}"),
+          Container(
+            width: 300,
+            height: 300,
+            decoration: BoxDecoration(
+              color: Colors.white, // Cor de fundo do card
+              borderRadius: BorderRadius.circular(16), // Borda arredondada
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26, // Sombra suave
+                  blurRadius: 8, // Raio do desfoque
+                  offset: Offset(0, 4), // Deslocamento da sombra
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "${pokemon.name}",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TypeContainer(type: pokemon.type![0]),
+                    ),
+                    if (!pokemon.type![1].isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TypeContainer(type: pokemon.type![1]),
+                      ),
+                  ],
+                ),
+                Text("HP: ${pokemon.base!.hp}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Attack: ${pokemon.base!.attack}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Defense: ${pokemon.base!.defense}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("SpAttack: ${pokemon.base!.spAttack}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("SpDefense: ${pokemon.base!.spDefense}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Speed: ${pokemon.base!.speed}",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
         ],
       ),
     );

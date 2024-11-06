@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCard extends StatefulWidget {
   final Pokemon pokemon;
@@ -22,6 +23,10 @@ class _PokemonCardState extends State<PokemonCard> {
               arguments: widget.pokemon);
         },
         child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Row(
             children: [
               if (widget.pokemon.imgSpriteUrl != null)
@@ -61,15 +66,25 @@ class _PokemonCardState extends State<PokemonCard> {
                         overflow: TextOverflow.ellipsis,
                       ),
 
-                      // if (movie.extract != null)
+                      // if (widget.pokemon.type.length > 1)
                       //   Text(
-                      //     movie.extract!,
-                      //     textAlign: TextAlign.justify,
-                      //   )
+                      //     widget.pokemon.type[1],
+                      //     style: Theme.of(context).textTheme.subtitleMedium,
+                      //     overflow: TextOverflow.ellipsis,
+                      //   ),
                     ],
                   ),
                 ),
-              )
+              ),
+              const SizedBox(width: 50),
+              TypeContainer(
+                type: widget.pokemon.type![0],
+              ),
+              const SizedBox(width: 4),
+              if (widget.pokemon.type!.length > 1)
+                TypeContainer(
+                  type: widget.pokemon.type![1],
+                ),
             ],
           ),
         ),
