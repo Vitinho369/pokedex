@@ -40,7 +40,6 @@ class _PokemonsTrainingPageState extends State<PokemonsTrainingPage> {
           "Pokemons",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
-        // backgroundColor: Theme.of(context).primaryColorLight,
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder<List<PokemonMeet>>(
@@ -60,7 +59,6 @@ class _PokemonsTrainingPageState extends State<PokemonsTrainingPage> {
                   );
                 },
               );
-//alinhando o texto ao centro
             return Container(
               alignment: Alignment.center,
               child: const Positioned(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/ui/page/type_map_color.dart';
-import 'package:pokedex/ui/widgets/pokemon_card.dart';
 
 class TypeContainer extends StatelessWidget {
   const TypeContainer({

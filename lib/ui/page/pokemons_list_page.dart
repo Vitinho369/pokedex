@@ -49,7 +49,6 @@ class _PokemonsListPageState extends State<PokemonsListPage> {
           "Pokemons",
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        // backgroundColor: Theme.of(context).primaryColorLight,
         backgroundColor: Colors.red,
       ),
       body: PagedListView<int, Pokemon>(

@@ -12,7 +12,6 @@ class InitialPage extends StatelessWidget {
           "Pokédex App",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
-        // backgroundColor: Theme.of(context).primaryColorLight,
         backgroundColor: Colors.red,
       ),
       body: Container(

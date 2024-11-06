@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MenssageCapture extends StatelessWidget {
+class MessageCapture extends StatelessWidget {
   late String text;
-  MenssageCapture({
+  MessageCapture({
     super.key,
     required this.text,
   });
@@ -16,7 +16,7 @@ class MenssageCapture extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
           ),

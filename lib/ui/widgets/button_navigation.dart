@@ -21,12 +21,12 @@ class ButtonNavigation extends StatelessWidget {
             elevation: 5,
             shadowColor: Colors.black,
             backgroundColor: Colors.red,
-            minimumSize: Size(100, 50),
+            minimumSize: const Size(100, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
         child: Text(textButton,
-            style: TextStyle(fontSize: 20, color: Colors.white)),
+            style: const TextStyle(fontSize: 20, color: Colors.white)),
       ),
     );
   }

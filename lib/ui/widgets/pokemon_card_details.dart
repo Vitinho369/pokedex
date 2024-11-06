@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/ui/page/type_map_color.dart';
+import 'package:pokedex/ui/widgets/grid_status.dart';
+import 'package:pokedex/ui/widgets/image_pokemon.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCardDetails extends StatelessWidget {
@@ -8,72 +11,84 @@ class PokemonCardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 150,
-            height: 150,
-            child: Image.network(
-              pokemon.imgThumbnailUrl!,
-              fit: BoxFit.cover,
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                pokemonTypeColors[pokemon.type![0]] ?? Colors.white,
+                Colors.white,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          Container(
-            width: 200,
-            height: 250,
-            decoration: BoxDecoration(
-              color: Colors.white, // Cor de fundo do card
-              borderRadius: BorderRadius.circular(16), // Borda arredondada
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26, // Sombra suave
-                  blurRadius: 8, // Raio do desfoque
-                  offset: Offset(0, 4), // Deslocamento da sombra
+        ),
+        Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ImagePokemonDetails(pokemon: pokemon),
+              Container(
+                width: 270,
+                height: 250,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "${pokemon.name}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: TypeContainer(type: pokemon.type![0]),
-                    ),
-                    if (pokemon.type!.length > 1 && pokemon.type![1].isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: TypeContainer(type: pokemon.type![1]),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "${pokemon.name}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: TypeContainer(type: pokemon.type![0]),
+                              ),
+                              if (pokemon.type!.length > 1 &&
+                                  pokemon.type![1].isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: TypeContainer(type: pokemon.type![1]),
+                                ),
+                            ],
+                          ),
+                        ],
                       ),
+                    ),
+                    GridStatus(
+                      base: pokemon.base!,
+                      typePokemon: pokemon.type![0],
+                    ),
                   ],
                 ),
-                Text("HP: ${pokemon.base!.hp}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Attack: ${pokemon.base!.attack}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Defense: ${pokemon.base!.defense}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("SpAttack: ${pokemon.base!.spAttack}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("SpDefense: ${pokemon.base!.spDefense}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Speed: ${pokemon.base!.speed}",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

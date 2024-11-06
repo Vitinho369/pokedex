@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/domain/pokemon.dart';
+import 'package:pokedex/ui/page/type_map_color.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCard extends StatefulWidget {
@@ -24,7 +25,7 @@ class _PokemonCardState extends State<PokemonCard> {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: pokemonTypeColors[widget.pokemon.type![0]]!.withOpacity(0.5),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
