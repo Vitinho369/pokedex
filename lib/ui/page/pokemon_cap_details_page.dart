@@ -23,7 +23,7 @@ class _PokemonCapturedDetailsPageState
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Pokemon Captured Details",
+          "Pokemon",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         backgroundColor: Colors.red,

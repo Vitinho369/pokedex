@@ -9,7 +9,7 @@ class PokemonDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Pokemon Details",
+          "Pokemon",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         backgroundColor: Colors.red,
