@@ -89,39 +89,7 @@ class PokemonCardCaptureDetails extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.info,
-                    borderSide: const BorderSide(
-                      color: Colors.green,
-                      width: 2,
-                    ),
-                    width: 280,
-                    buttonsBorderRadius: const BorderRadius.all(
-                      Radius.circular(2),
-                    ),
-                    dismissOnTouchOutside: true,
-                    dismissOnBackKeyPress: false,
-                    onDismissCallback: (type) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: type == DismissType.btnOk
-                              ? const Text('Pokemon foi solto')
-                              : const Text('Pokemon não foi solto'),
-                        ),
-                      );
-                    },
-                    headerAnimationLoop: false,
-                    animType: AnimType.bottomSlide,
-                    title: 'Soltar pokemon',
-                    desc: 'Deseja libertar esse pokemon?',
-                    showCloseIcon: true,
-                    btnCancelOnPress: () {},
-                    btnOkOnPress: () {
-                      pokemonsRepoTrainer.releasePokemon(pokemon);
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                    },
-                  ).show();
+                  showMessageCapture(context).show();
                 },
                 style: ElevatedButton.styleFrom(
                     elevation: 5,
@@ -138,6 +106,42 @@ class PokemonCardCaptureDetails extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  AwesomeDialog showMessageCapture(BuildContext context) {
+    return AwesomeDialog(
+      context: context,
+      dialogType: DialogType.info,
+      borderSide: const BorderSide(
+        color: Colors.green,
+        width: 2,
+      ),
+      width: 280,
+      buttonsBorderRadius: const BorderRadius.all(
+        Radius.circular(2),
+      ),
+      dismissOnTouchOutside: true,
+      dismissOnBackKeyPress: false,
+      onDismissCallback: (type) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: type == DismissType.btnOk
+                ? const Text('Pokemon foi solto')
+                : const Text('Pokemon não foi solto'),
+          ),
+        );
+      },
+      headerAnimationLoop: false,
+      animType: AnimType.bottomSlide,
+      title: 'Soltar pokemon',
+      desc: 'Deseja libertar esse pokemon?',
+      showCloseIcon: true,
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        pokemonsRepoTrainer.releasePokemon(pokemon);
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      },
     );
   }
 }
