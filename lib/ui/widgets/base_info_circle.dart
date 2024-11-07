@@ -24,7 +24,7 @@ class BaseInfoCircularCard extends StatelessWidget {
             // color: pokemonStatColor,
             color: pokemonTypeColors[typePokemon],
             backgroundColor: Colors.grey[900]!.withOpacity(0.54),
-            value: status.toDouble() / 100,
+            value: status.toDouble() / 255,
             strokeWidth: 6.4,
           ),
         ),
