@@ -21,7 +21,7 @@ class NetworkMapper {
         imgSpriteUrl:
             "https://raw.githubusercontent.com/fanzeyi/pokemon.json/refs/heads/master/sprites/${entity.id.toString().padLeft(3, "0")}MS.png",
         imgThumbnailUrl:
-            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/refs/heads/master/thumbnails/${entity.id.toString().padLeft(3, "0")}.png",
+            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/refs/heads/master/images/${entity.id.toString().padLeft(3, "0")}.png",
       );
     } catch (e) {
       throw MapperException<PokemonEntity, Pokemon>(e.toString());

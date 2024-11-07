@@ -32,7 +32,9 @@ class PokemonCardDetails extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ImagePokemonDetails(pokemon: pokemon),
+              ImagePokemonDetails(
+                imgPokemon: pokemon.imgThumbnailUrl!,
+              ),
               Container(
                 width: 270,
                 height: 250,

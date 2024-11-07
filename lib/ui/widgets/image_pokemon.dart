@@ -4,10 +4,10 @@ import 'package:pokedex/domain/pokemon.dart';
 class ImagePokemonDetails extends StatelessWidget {
   const ImagePokemonDetails({
     super.key,
-    required this.pokemon,
+    required this.imgPokemon,
   });
 
-  final Pokemon pokemon;
+  final String imgPokemon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,7 @@ class ImagePokemonDetails extends StatelessWidget {
               offset: Offset(0, 4),
             ),
           ]),
-      child: Image.network(
-        pokemon.imgThumbnailUrl!,
-      ),
+      child: Image.network(imgPokemon),
     );
   }
 }

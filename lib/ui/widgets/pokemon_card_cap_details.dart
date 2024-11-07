@@ -3,6 +3,7 @@ import 'package:pokedex/data/repository/pokemon_trainer_repository_impl.dart';
 import 'package:pokedex/domain/pokemon_meet.dart';
 import 'package:pokedex/ui/page/type_map_color.dart';
 import 'package:pokedex/ui/widgets/grid_status.dart';
+import 'package:pokedex/ui/widgets/image_pokemon.dart';
 import 'package:pokedex/ui/widgets/type_container.dart';
 
 class PokemonCardCaptureDetails extends StatelessWidget {
@@ -39,23 +40,7 @@ class PokemonCardCaptureDetails extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: 140,
-                height: 140,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(70),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ]),
-                child: Image.network(
-                  pokemon.imgThumbnailUrl!,
-                ),
-              ),
+              ImagePokemonDetails(imgPokemon: pokemon.imgThumbnailUrl!),
               Container(
                 width: 270,
                 height: 250,
