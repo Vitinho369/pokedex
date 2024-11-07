@@ -118,8 +118,8 @@ class _DailyMeetingPageState extends State<DailyMeetingPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 160,
-                            height: 160,
+                            width: 170,
+                            height: 200,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(50),

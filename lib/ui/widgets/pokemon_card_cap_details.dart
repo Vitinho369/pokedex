@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/data/repository/pokemon_trainer_repository_impl.dart';
 import 'package:pokedex/domain/pokemon_meet.dart';
@@ -88,12 +89,39 @@ class PokemonCardCaptureDetails extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  pokemonsRepoTrainer.releasePokemon(pokemon).then((value) {
-                    if (value)
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.info,
+                    borderSide: const BorderSide(
+                      color: Colors.green,
+                      width: 2,
+                    ),
+                    width: 280,
+                    buttonsBorderRadius: const BorderRadius.all(
+                      Radius.circular(2),
+                    ),
+                    dismissOnTouchOutside: true,
+                    dismissOnBackKeyPress: false,
+                    onDismissCallback: (type) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: type == DismissType.btnOk
+                              ? const Text('Pokemon foi solto')
+                              : const Text('Pokemon não foi solto'),
+                        ),
+                      );
+                    },
+                    headerAnimationLoop: false,
+                    animType: AnimType.bottomSlide,
+                    title: 'Soltar pokemon',
+                    desc: 'Deseja libertar esse pokemon?',
+                    showCloseIcon: true,
+                    btnCancelOnPress: () {},
+                    btnOkOnPress: () {
+                      pokemonsRepoTrainer.releasePokemon(pokemon);
                       Navigator.of(context).popUntil((route) => route.isFirst);
-                    else
-                      print("Erro ao soltar pokemon");
-                  });
+                    },
+                  ).show();
                 },
                 style: ElevatedButton.styleFrom(
                     elevation: 5,
